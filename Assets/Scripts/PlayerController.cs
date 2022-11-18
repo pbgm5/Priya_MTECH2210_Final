@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        print("Velocity: " + rb.velocity.x);
         Debug.Log(GroundCheck());
         if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
         {
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
         if (jumping == true)
         {
+            Debug.Log("Jump");
             rb.velocity = Vector2.up * jumpSpeed;
             jumping = false;
         }
