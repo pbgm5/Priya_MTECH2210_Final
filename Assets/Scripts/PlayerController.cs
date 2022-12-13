@@ -7,12 +7,15 @@ public class PlayerController : MonoBehaviour
     public LayerMask ground;
     public float speed = 5;
     public float jumpSpeed = 1;
+    float xMove;
     private Rigidbody2D rb;
     bool jumping;
     public float distanceCheckAmount = 0;
+    private SpriteRenderer sr;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer > ();
     }
 
     void Update()
@@ -22,6 +25,20 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
         {
             jumping = true;
+        }
+
+        xMove = Input.GetAxisRaw("Horizontal");
+
+        if (xMove != 0)
+        {
+            if (xMove < 0)
+            {
+                sr.flipX = false;
+            }
+            else if (xMove > 0)
+            {
+                sr.flipX = true;
+            }
         }
     }
 
